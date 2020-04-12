@@ -1,15 +1,19 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
-const schema = require("../schema/schema.js");
+const schema = require("../graphql/schema.js");
 const mongoose = require("mongoose");
 
 const app = express();
 const PORT = 3005;
 
-mongoose.connect(
-  "mongodb+srv://tutorial_user:Testing12345@cluster0-z4y9c.mongodb.net/graphql-tutorial?retryWrites=true&w=majority",
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+mongoose
+  .connect(
+    "mongodb+srv://tutorial_user:Testing12345@cluster0-z4y9c.mongodb.net/graphql-tutorial?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
+  .catch((err) => {
+    console.log("Connection error: ", err);
+  });
 
 app.use("/graphql", graphqlHTTP({ schema, graphiql: true }));
 
