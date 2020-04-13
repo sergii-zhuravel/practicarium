@@ -1,11 +1,11 @@
-export const styles = theme => ({
+export const styles = (theme) => ({
   searchRoot: {
-    marginBottom: theme.spacing.unit * 3,
-    minHeight: theme.spacing.unit * 6,
-    display: 'flex',
+    marginBottom: theme.spacing(3),
+    minHeight: theme.spacing(6),
+    display: "flex",
   },
   root: {
-    width: '100%',
-    overflowX: 'auto',
+    width: "100%",
+    overflowX: "auto",
   },
 });

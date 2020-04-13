@@ -1,21 +1,21 @@
-export const styles = theme => ({
+export const styles = (theme) => ({
   container: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   title: {
     paddingBottom: 0,
   },
   textField: {
-    width: '100%',
+    width: "100%",
   },
   formControl: {
-    margin: theme.spacing.unit,
+    margin: theme.spacing(1),
     minWidth: 120,
   },
   wrapper: {
-    marginTop: theme.spacing.unit * 2,
-    display: 'flex',
-    justifyContent: 'flex-end',
+    marginTop: theme.spacing(2),
+    display: "flex",
+    justifyContent: "flex-end",
   },
   button: {
     minWidth: 100,
