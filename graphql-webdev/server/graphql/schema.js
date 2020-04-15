@@ -65,14 +65,16 @@ const RootQuery = new GraphQLObjectType({
     },
     movies: {
       type: new GraphQLList(MovieType),
-      resolve() {
-        return Movies.find({});
+      args: { name: { type: GraphQLString } },
+      resolve(parent, { name }) {
+        return Movies.find({ name: { $regex: name, $options: "i" } });
       },
     },
     directors: {
       type: new GraphQLList(DirectorType),
-      resolve() {
-        return Directors.find({});
+      args: { name: { type: GraphQLString } },
+      resolve(parent, { name }) {
+        return Directors.find({ name: { $regex: name, $options: "i" } });
       },
     },
   },
@@ -95,7 +97,7 @@ const RootMutation = new GraphQLObjectType({
         return director.save();
       },
     },
-    editDirector: {
+    updateDirector: {
       type: DirectorType,
       args: {
         id: { type: GraphQLID },
@@ -141,7 +143,7 @@ const RootMutation = new GraphQLObjectType({
         return movie.save();
       },
     },
-    editMovie: {
+    updateMovie: {
       type: MovieType,
       args: {
         id: { type: GraphQLID },
@@ -151,9 +153,9 @@ const RootMutation = new GraphQLObjectType({
         rate: { type: GraphQLInt },
         watched: { type: new GraphQLNonNull(GraphQLBoolean) },
       },
-      resolve(parent, { name, genre, directorId, rate, watched }) {
+      resolve(parent, { id, name, genre, directorId, rate, watched }) {
         return Movies.findByIdAndUpdate(
-          args.id,
+          id,
           {
             $set: {
               name,
