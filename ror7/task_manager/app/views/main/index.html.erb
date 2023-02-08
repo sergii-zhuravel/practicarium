@@ -1,2 +1,8 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<h1>Task manager</h1>
+<p>This is an application to managing a Todo List</p>
+
+<a href="/tasks/index">Tasks 1</a><br>
+<%= link_to('Tasks2', {controller: :tasks})%>
+
+
+<%= link_to('About', {action: 'about', page: 5, id: 20})%>
